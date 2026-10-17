@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt bàn quán Pizza</title>
+    <link rel="stylesheet" href="css/datban.css">
+    <script src="js/datban.js" defer></script>
+</head>
+<body>
+
+    <nav class="thanh-dieu-huong">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </nav>
+
+    <main class="khung-chinh">
+
+        <section class="cot-thuong-hieu">
+            <div class="khung-linh-vat"></div>
+            <h2 class="ten-thuong-hieu">O(Pizza)</h2>
+            <p class="khau-hieu">Chào mừng bạn!</p>
+        </section>
+
+        <section class="cot-dat-ban">
+            <h1>Đặt bàn tại O(Pizza)</h1>
+
+            <form action="#" method="GET">
+                <div class="luoi-form">
+                    
+                    <div class="nhom-o-nhap">
+                        <label for="city">Khu vực:</label>
+                        <select id="city" name="city" required>
+                            <option value="hcm">Hồ Chí Minh</option>
+                            <option value="hn">Hà Nội</option>
+                            <option value="dn">Đà Nẵng</option>
+                        </select>
+                    </div>
+
+                    <div class="nhom-o-nhap">
+                        <label for="restaurant">Nhà hàng:</label>
+                        <select id="restaurant" name="restaurant" required>
+                            <option value="" data-city="all" selected disabled>Chọn nhà hàng</option>
+                            <option value="hcm1" data-city="hcm">Bến Thành - 1 Quảng trường Quách Thị Trang</option>
+                            <option value="hcm2" data-city="hcm">Phố đi bộ Nguyễn Huệ - 42 Nguyễn Huệ</option>
+                            <option value="hcm3" data-city="hcm">Nhà thờ Đức Bà - 1 Công xã Paris</option>
+                            <option value="hcm4" data-city="hcm">Thảo Điền - 161 Xa lộ Hà Nội</option>
+                            <option value="hcm5" data-city="hcm">Landmark 81 - 720A Điện Biên Phủ</option>
+                            <option value="hn1" data-city="hn">Hồ Gươm - 1-3 Đinh Tiên Hoàng</option>
+                            <option value="hn2" data-city="hn">Phố cổ - 25 Hàng Ngang</option>
+                            <option value="hn3" data-city="hn">Lăng Chủ tịch Hồ Chí Minh - 15 Hùng Vương</option>
+                            <option value="hn4" data-city="hn">Lotte Center - 54 Liễu Giai</option>
+                            <option value="hn5" data-city="hn">Yên Lãng - Ngõ 120 Yên Lãng</option>
+                            <option value="dn1" data-city="dn">Cầu Rồng - 1 Trần Hưng Đạo</option>
+                            <option value="dn2" data-city="dn">Bãi biển Mỹ Khê - 280 Võ Nguyên Giáp</option>
+                            <option value="dn3" data-city="dn">Chợ Hàn - 119 Trần Phú</option>
+                            <option value="dn4" data-city="dn">Cầu Sông Hàn - 2 Bạch Đằng</option>
+                            <option value="dn5" data-city="dn">Bà Nà Hills - An Sơn, Hòa Ninh</option>
+                        </select>
+                    </div>
+
+                    <div class="nhom-o-nhap">
+                        <label for="guests">Số lượng:</label>
+                        <select id="guests" name="guests">
+                            <option value="1">1 Người</option>
+                            <option value="2" selected>2 Người</option>
+                            <option value="3">3 Người</option>
+                            <option value="4">4 Người</option>
+                            <option value="more">Nhiều hơn 4 người</option>
+                        </select>
+                    </div>
+
+                    <div class="nhom-o-nhap">
+                        <label for="date">Ngày đặt:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="nhom-o-nhap">
+                        <label for="time">Giờ đến:</label>
+                        <input type="time" id="time" name="time" value="16:45">
+                    </div>
+
+                    <div class="nhom-o-nhap trandai-haicot">
+                        <button type="submit">ĐẶT BÀN</button>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="phan-ghi-chu">
+                <p>Với đặt bàn nhóm (từ 15 khách), đặt trước trên 30 ngày, hoặc có yêu cầu về chỗ ngồi/khu vực, vui lòng liên hệ với chúng tôi qua các kênh bên dưới.</p>
+                
+                <a href="tel:1900XXXX">
+                    <button type="button">📞 Gọi CSKH (09:00 - 22:00)</button>
+                </a>
+                
+                <p><small>Nhấn phím 1 để chọn Tiếng Việt, sau đó nhấn tiếp phím 1 để đặt bàn</small></p>
+            </div>
+        </section>
+
+    </main>
+
+    <dialog class="hop-thoai-dat-ban" id="booking-dialog" aria-labelledby="booking-title" aria-describedby="booking-message">
+        <h2 id="booking-title"></h2>
+        <p id="booking-message"></p>
+        <dl class="chi-tiet-dat-ban">
+            <div>
+                <dt>Nhà hàng</dt>
+                <dd id="booking-restaurant"></dd>
+            </div>
+            <div>
+                <dt>Khu vực</dt>
+                <dd id="booking-city"></dd>
+            </div>
+            <div>
+                <dt>Số lượng</dt>
+                <dd id="booking-guests"></dd>
+            </div>
+            <div>
+                <dt>Ngày đặt</dt>
+                <dd id="booking-date"></dd>
+            </div>
+            <div>
+                <dt>Giờ đến</dt>
+                <dd id="booking-time"></dd>
+            </div>
+        </dl>
+        <div class="cac-nut-hop-thoai">
+            <button type="button" class="nut-huy" id="cancel-booking">Quay lại</button>
+            <button type="button" class="nut-xac-nhan" id="confirm-booking">Xác nhận đặt bàn</button>
+            <button type="button" class="nut-xac-nhan" id="close-booking" hidden>Đóng</button>
+        </div>
+    </dialog>
+
+</body>
+</html>
