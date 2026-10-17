@@ -29,12 +29,23 @@
     font-weight: bold;
     font-family: sans-serif;
 }
+.nav-item .account-name { cursor: default; }
+.nav-item .logout-button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
 .nav-item li img {
     width: 40px;
     height: 40px;
     vertical-align: middle;
     filter: invert(1);
     mix-blend-mode: screen;
+
 }
 
 /* Thanh qcao */
@@ -48,7 +59,8 @@
     display: flex;
     gap: 20px;
     /* padding: 0 10%; */
-    transition: transform 0.5s ease-in-out;
+    /* transition: transform 0.5s ease-in-out; */
+    animation: tuDongTruot 9s infinite;
 }
 .anh-qcao img{ 
     width: 80%;
@@ -78,6 +90,21 @@
 }
 #sang-trai{
     left: 150px;
+}
+
+@keyframes tuDongTruot {
+    0%, 25% {
+        transform: translateX(calc(-80% - 20px)); 
+    }
+    33%, 58% {
+        transform: translateX(calc(-160% - 40px)); 
+    }
+    66%, 91% {
+        transform: translateX(calc(-240% - 60px)); 
+    }
+    100% {
+        transform: translateX(calc(-320% - 80px)); 
+    }
 }
 
 /* tieu de gach */
