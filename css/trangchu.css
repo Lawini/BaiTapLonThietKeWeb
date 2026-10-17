@@ -1,0 +1,265 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* Thanh navigation bar */
+.nav-item{
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.nav-item ul{
+    list-style-type: none;  
+    text-align: right;
+    background-color: #004666;
+}
+.nav-item li{
+    display: inline-block;
+    padding: 0 20px;
+    line-height: 60px;
+}
+.nav-item li:hover{
+    background-color: rgb(27, 135, 165);
+}
+.nav-item a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.nav-item li img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    filter: invert(1);
+    mix-blend-mode: screen;
+}
+
+/* Thanh qcao */
+.menu-qcao{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.anh-qcao{
+    display: flex;
+    gap: 20px;
+    /* padding: 0 10%; */
+    transition: transform 0.5s ease-in-out;
+}
+.anh-qcao img{ 
+    width: 80%;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.anh-qcao img:first-child {
+    margin-left: 10%;
+}
+.nav-btn{
+    position: absolute;
+    top: 50%;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(136, 130, 130);
+    z-index: 1;
+}
+#sang-phai{
+    right: 150px;
+}
+#sang-trai{
+    left: 150px;
+}
+
+/* tieu de gach */
+.tieu-de-gach {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 50px auto;
+    font-size: 28px;
+    font-weight: bold;
+    color: #1a568c; 
+    text-transform: uppercase;
+}
+
+
+.tieu-de-gach::before,
+.tieu-de-gach::after {
+    content: "";
+    flex: 1; 
+    border-bottom: 3px solid #ccc; 
+}
+
+.tieu-de-gach::before {
+    margin-right: 20px;
+}
+.tieu-de-gach::after {
+    margin-left: 20px;
+}
+
+.best-seller{
+    color: #e31837; 
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: bold;
+    
+    border-bottom: 3px solid #e31837;
+    padding-bottom: 5px;
+}
+
+.mon-an-trang-chu{
+    width: 60%;
+    display: flex;
+    margin: 50px auto;
+    /* flex-wrap: wrap; */
+}
+.mon-an-trang-chu section{
+    width: calc(25% - 20px);
+    margin: 10px;
+    border: 2px solid rgb(221, 210, 210);
+    border-radius: 15px;
+}
+
+.mon-an-trang-chu a{
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #0078ae;    
+    text-decoration: none;
+}
+
+.mon-an-trang-chu img{
+    width: 100%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.mon-an-trang-chu p{
+    text-align: center;
+    padding: 20px 0;
+    cursor: pointer;
+}
+.mon-an-trang-chu p:hover{
+    color: red;
+}
+.btn-xem-them{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.btn-xem-them a{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    background-color: #0078ae;
+    padding: 12px 16px;
+    border-radius: 5px;
+
+}
+
+/* footer trang chu */
+
+.footer-trang-chu {
+    background-color: #005f83; 
+    font-family: sans-serif;
+    padding: 20px 50px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+    margin-bottom: 20px;
+}
+
+.lk-mang-xa-hoi span {
+    font-weight: bold;
+    margin-right: 15px;
+    color: #fff;
+}
+
+.lk-mang-xa-hoi a{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    color: #fff;
+}
+
+.footer-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+
+.footer-logo img {
+    height: 60px;
+    width: auto;
+}
+
+
+.footer-hotline {
+    border-left: 1px solid rgba(255, 255, 255, 0.2); 
+    padding-left: 30px;
+}
+
+.footer-hotline p {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-style: italic;
+    color: #fff;
+    font-weight: bold;
+}
+
+.footer-hotline h3 {
+    margin: 0;
+    color: #ffc107; 
+    font-size: 28px;
+}
+
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+.footer-cert img {
+    height: 40px;
+    margin-left: 10px;
+}
+.footer-bottom {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-top: 20px;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #88cbe0; 
+}

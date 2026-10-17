@@ -1,0 +1,49 @@
+/* Import font từ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Poppins:wght@900&display=swap');
+
+/* Canh chỉnh tổng thể logo */
+.logo-opizza {
+    display: inline-flex;
+    align-items: center;
+    font-size: 2.5rem; /* Tùy chỉnh to nhỏ ở đây */
+    cursor: pointer;
+    user-select: none;
+    /* Nếu Navbar tối màu thì không cần nền, nếu nền sáng có thể thêm background */
+}
+
+/* Phần ký hiệu thuật toán O() */
+.logo-opizza .syntax {
+    font-family: 'Fira Code', monospace; /* Font chữ giống trong IDE VS Code */
+    color: #a8b2d1; /* Màu xám xanh chuẩn phong cách code */
+    font-weight: 700;
+}
+
+/* Phần chữ PIZZA ở giữa */
+.logo-opizza .pizza-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    color: #ff4757; /* Màu đỏ sốt cà chua */
+    letter-spacing: 2px;
+    margin: 0 5px;
+    
+    /* Tạo hiệu ứng 3D xếp lớp giống đế bánh pizza */
+    text-shadow: 
+        2px 2px 0px #ffa502, 
+        4px 4px 0px #2f3542;
+    
+    /* Hiệu ứng chuyển động */
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi di chuột (Hover) vào logo */
+.logo-opizza:hover .pizza-text {
+    color: #ffa502; /* Đổi sang màu vàng phô mai */
+    text-shadow: 
+        2px 2px 0px #ff4757, 
+        6px 6px 0px #2f3542;
+    transform: translateY(-5px) scale(1.05); /* Nảy lên một chút */
+}
+
+.logo-opizza:hover .syntax {
+    color: #ffffff; /* Sáng ngoặc lên khi hover */
+}
