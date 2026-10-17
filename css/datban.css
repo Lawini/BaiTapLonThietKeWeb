@@ -13,12 +13,38 @@ body {
     flex-direction: column;
 }
 
-.thanh-dieu-huong {
-    width: 100%;
-    height: 60px;
-    background-color: #004b6e;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    position: fixed;
+.nav-item{
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.nav-item ul{
+    list-style-type: none;  
+    text-align: right;
+    background-color: #004666;
+}
+.nav-item li{
+    display: inline-block;
+    padding: 0 20px;
+    line-height: 60px;
+}
+.nav-item li:hover{
+    background-color: rgb(27, 135, 165);
+}
+.nav-item a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.nav-item li img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    filter: invert(1);
+    mix-blend-mode: screen;
 }
 
 .khung-chinh {
@@ -194,11 +220,6 @@ button[type="submit"]:hover {
 .phan-ghi-chu button:hover {
     background-color: #ffffff;
     color: #006494;
-}
-
-small {
-    font-size: 0.8rem;
-    opacity: 0.85;
 }
 
 .hop-thoai-dat-ban {
