@@ -9,7 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmButton = document.getElementById('confirm-booking');
     const cancelButton = document.getElementById('cancel-booking');
     const closeButton = document.getElementById('close-booking');
+    const bookingDetails = bookingDialog.querySelector('.chi-tiet-dat-ban');
+    const dateInput = document.getElementById('date');
+    const timeInput = document.getElementById('time');
     let pendingBooking = null;
+    let authChoiceRequired = false;
+
+    function updateDateMinimum() {
+        const now = new Date();
+        const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        dateInput.min = today;
+    }
+
+    updateDateMinimum();
 
     citySelect.addEventListener('change', function() {
         const selectedCity = this.value;
@@ -27,32 +39,95 @@ document.addEventListener('DOMContentLoaded', function() {
 
     bookingForm.addEventListener('submit', async function(event) {
         event.preventDefault();
+        updateDateMinimum();
+
+        const formData = new FormData(bookingForm);
+        const date = String(formData.get('date') || '');
+        const time = String(formData.get('time') || '');
+        const dateParts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+        const timeParts = /^(\d{2}):(\d{2})$/.exec(time);
+        if (!dateParts) {
+            bookingMessage.textContent = 'Ngày hoặc giờ đặt bàn không hợp lệ.';
+            dateInput.setCustomValidity('Vui lòng chọn ngày có năm gồm đúng 4 chữ số.');
+            dateInput.reportValidity();
+            dateInput.setCustomValidity('');
+            return;
+        }
+        if (!timeParts) {
+            bookingMessage.textContent = 'Ngày hoặc giờ đặt bàn không hợp lệ.';
+            timeInput.setCustomValidity('Vui lòng chọn giờ đặt bàn hợp lệ.');
+            timeInput.reportValidity();
+            timeInput.setCustomValidity('');
+            return;
+        }
+
+        const [, year, month, day] = dateParts;
+        const [, hour, minute] = timeParts;
+        const bookingDate = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute));
+        if (
+            bookingDate.getFullYear() !== Number(year) ||
+            bookingDate.getMonth() !== Number(month) - 1 ||
+            bookingDate.getDate() !== Number(day) ||
+            bookingDate.getHours() !== Number(hour) ||
+            bookingDate.getMinutes() !== Number(minute) ||
+            bookingDate <= new Date()
+        ) {
+            timeInput.setCustomValidity('Vui lòng chọn ngày và giờ hợp lệ trong tương lai.');
+            timeInput.reportValidity();
+            timeInput.setCustomValidity('');
+            return;
+        }
 
         try {
             const response = await fetch('/api/me', { cache: 'no-store' });
             if (!response.ok) throw new Error('Không thể kiểm tra trạng thái đăng nhập.');
             const { user } = await response.json();
-            if (!user || user.role !== 'customer') {
-                window.location.assign('/dangnhap.html?mode=register&next=%2Fdatban.html');
+            if (!user) {
+                authChoiceRequired = true;
+                bookingTitle.textContent = 'Bạn chưa đăng nhập tài khoản';
+                bookingMessage.textContent = 'Vui lòng đăng ký hoặc đăng nhập để tiếp tục đặt bàn.';
+                bookingDetails.hidden = true;
+                cancelButton.textContent = 'Đăng ký';
+                confirmButton.textContent = 'Đăng nhập';
+                confirmButton.disabled = false;
+                confirmButton.hidden = false;
+                cancelButton.hidden = false;
+                closeButton.hidden = true;
+                bookingDialog.showModal();
+                return;
+            }
+            if (user.role !== 'customer') {
+                authChoiceRequired = false;
+                bookingTitle.textContent = 'Không thể đặt bàn';
+                bookingMessage.textContent = 'Chỉ tài khoản khách hàng mới có thể đặt bàn.';
+                bookingDetails.hidden = true;
+                confirmButton.hidden = true;
+                cancelButton.hidden = true;
+                closeButton.hidden = false;
+                bookingDialog.showModal();
                 return;
             }
         } catch (error) {
-            bookingTitle.textContent = 'Không thể tiếp tục';
-            bookingMessage.textContent = error.message;
-            confirmButton.hidden = true;
-            cancelButton.hidden = true;
-            closeButton.hidden = false;
+            authChoiceRequired = true;
+            bookingTitle.textContent = 'Bạn chưa đăng nhập tài khoản';
+            bookingMessage.textContent = 'Vui lòng đăng ký hoặc đăng nhập để tiếp tục đặt bàn.';
+            bookingDetails.hidden = true;
+            cancelButton.textContent = 'Đăng ký';
+            confirmButton.textContent = 'Đăng nhập';
+            confirmButton.disabled = false;
+            confirmButton.hidden = false;
+            cancelButton.hidden = false;
+            closeButton.hidden = true;
             bookingDialog.showModal();
             return;
         }
 
-        const formData = new FormData(bookingForm);
         const selectedRestaurant = restaurantSelect.selectedOptions[0];
         const selectedCity = citySelect.selectedOptions[0].textContent;
         const selectedGuests = bookingForm.elements.guests.selectedOptions[0].textContent;
-        const [year, month, day] = formData.get('date').split('-').map(Number);
-        const formattedDate = new Date(year, month - 1, day).toLocaleDateString('vi-VN');
+        const formattedDate = bookingDate.toLocaleDateString('vi-VN');
 
+        authChoiceRequired = false;
         pendingBooking = {
             restaurant: restaurantSelect.value,
             city: citySelect.value,
@@ -69,17 +144,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         bookingTitle.textContent = 'Xác nhận đặt bàn';
         bookingMessage.textContent = 'Vui lòng kiểm tra thông tin trước khi xác nhận đặt bàn.';
+        bookingDetails.hidden = false;
+        cancelButton.textContent = 'Quay lại';
         confirmButton.hidden = false;
         cancelButton.hidden = false;
+        confirmButton.disabled = false;
         closeButton.hidden = true;
         bookingDialog.showModal();
     });
 
     cancelButton.addEventListener('click', function() {
+        if (authChoiceRequired) {
+            window.location.assign('/dangnhap.html?mode=register&next=%2Fdatban.html');
+            return;
+        }
         bookingDialog.close();
     });
 
     confirmButton.addEventListener('click', async function() {
+        if (authChoiceRequired) {
+            window.location.assign('/dangnhap.html?next=%2Fdatban.html');
+            return;
+        }
+
         const restaurant = document.getElementById('booking-restaurant').textContent;
         const city = document.getElementById('booking-city').textContent;
         const guests = document.getElementById('booking-guests').textContent;

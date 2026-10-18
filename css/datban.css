@@ -278,6 +278,10 @@ button[type="submit"]:hover {
     margin-top: 20px;
 }
 
+.chi-tiet-dat-ban[hidden] {
+    display: none;
+}
+
 .chi-tiet-dat-ban div {
     display: flex;
     justify-content: space-between;
@@ -300,10 +304,13 @@ button[type="submit"]:hover {
 }
 
 .cac-nut-hop-thoai button {
-    padding: 10px 14px;
+    flex: 1;
+    min-width: 132px;
+    min-height: 52px;
+    padding: 12px 20px;
     border: 0;
     border-radius: 8px;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 700;
     cursor: pointer;
 }
@@ -337,5 +344,9 @@ button[type="submit"]:hover {
     }
     .trandai-haicot {
         grid-column: span 1;
+    }
+    .cac-nut-hop-thoai button {
+        min-width: 0;
+        padding: 12px 10px;
     }
 }
