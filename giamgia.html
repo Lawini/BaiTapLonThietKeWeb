@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khuyến mãi | O(Pizza)</title>
+    <link rel="stylesheet" href="css/giamgia.css">
+    <script src="Js/auth-ui.js" defer></script>
+    <script src="Js/giamgia.js" defer></script>
+</head>
+<body>
+    <nav class="nav-item">
+        <ul>
+            <li class="nav-logo"><a href="trangchu.html"><img src="Img/logo.png" alt="O(Pizza)"></a></li>
+            <li><a href="trangchu.html">Trang chủ</a></li>
+            <li><a href="datban.html">Đặt bàn</a></li>
+            <li><a href="menu.html">Thực đơn</a></li>
+            <li class="active"><a href="giamgia.html" aria-current="page">Giảm Giá</a></li>
+            <li><a id="account-link" href="dangnhap.html" aria-label="Đăng nhập"><img src="Img/dangnhap.jpg" alt="Đăng nhập"></a></li>
+        </ul>
+    </nav>
+
+    <main class="promo-page">
+        <section class="promo-card" aria-labelledby="discount-title">
+            <div class="promo-art">
+                <img src="Img/pizza4loaiphomai.jpg" alt="Pizza phô mai cho chương trình giảm giá">
+                <span class="promo-sticker">70<small>%</small><span>Pizza thứ 2</span></span>
+            </div>
+            <div class="promo-details">
+                <h1 id="discount-title">Giảm 70% Cho Pizza Thứ 2</h1>
+                <div class="title-rule"></div>
+                <div class="promo-terms">
+                    <p>* Mua 1 Pizza size M/L kèm thức uống lớn bất kỳ hoặc 2 thức uống nhỏ được giảm 70% cho Pizza thứ 2 cùng size có giá bằng hoặc thấp hơn Pizza thứ nhất.</p>
+                    <p>* Áp dụng mỗi ngày cho dùng tại chỗ, mua mang về và giao hàng tận nơi.</p>
+                    <p>* Không áp dụng chung với các chương trình khuyến mãi khác trên cùng 1 đơn hàng.</p>
+                </div>
+                <div class="promo-actions" aria-label="Chọn combo giảm giá 70%">
+                    <button class="order-promo" type="button" data-offer="Pizza size M + 1 nước lớn">PIZZA SIZE M + 1 NƯỚC LỚN</button>
+                    <button class="order-promo" type="button" data-offer="Pizza size L + 1 nước lớn">PIZZA SIZE L + 1 NƯỚC LỚN</button>
+                    <button class="order-promo" type="button" data-offer="Pizza size M + 2 nước nhỏ">PIZZA SIZE M + 2 NƯỚC NHỎ</button>
+                    <button class="order-promo" type="button" data-offer="Pizza size L + 2 nước nhỏ">PIZZA SIZE L + 2 NƯỚC NHỎ</button>
+                </div>
+                <div class="promo-badge" aria-hidden="true">BEST CHOICE TODAY <span>🔥</span></div>
+            </div>
+        </section>
+
+        <section class="promo-card" aria-labelledby="combo-title">
+            <div class="promo-art">
+                <img src="Img/anh1-qcao.jpg" alt="Pizza tôm xúc xích xốt đôi phô mai và kem cajun">
+                <span class="promo-sticker combo-sticker">COMBO<span>TẶNG QUÀ</span></span>
+            </div>
+            <div class="promo-details">
+                <h2 id="combo-title">Mua Combo Pizza Mới, Tặng 1 Thành Viên Hích-Maker</h2>
+                <div class="title-rule"></div>
+                <div class="promo-terms">
+                    <p>* Combo 309.000 VND (giá gốc: 345.000 VND) dành cho 2-3 người gồm 1 Pizza Tôm Xúc Xích Xốt Đôi Phô Mai &amp; Kem Cajun size M + 2 thức uống nhỏ + 1 phần tráng miệng/món phụ (+20.000 VND cho phần Gà Viên) + 1 phần quà thành viên của “Bộ Tứ Hích-Maker”.</p>
+                    <p>* Combo 389.000 VND (giá gốc: 445.000 VND) dành cho 3-4 người gồm 1 Pizza Tôm Xúc Xích Xốt Đôi Phô Mai &amp; Kem Cajun size L + 2 thức uống nhỏ + 1 phần tráng miệng/món phụ (+20.000 VND cho phần Gà Viên) + 1 phần quà thành viên của “Bộ Tứ Hích-Maker”.</p>
+                    <p>* Áp dụng từ 01/10 đến 31/10/2026 cho dùng tại chỗ, mua mang về và giao hàng tận nơi. Số lượng quà có hạn.</p>
+                </div>
+                <div class="promo-actions">
+                    <button class="order-promo" type="button" data-offer="Combo Pizza size M + quà thành viên — 309.000 VND">ĐẶT COMBO SIZE M — 309.000 VND</button>
+                    <button class="order-promo" type="button" data-offer="Combo Pizza size L + quà thành viên — 389.000 VND">ĐẶT COMBO SIZE L — 389.000 VND</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <dialog class="order-dialog" id="order-success" aria-labelledby="success-title">
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h2 id="success-title">Đặt hàng thành công!</h2>
+        <p id="success-message"></p>
+        <button id="close-success" type="button">Tiếp tục</button>
+    </dialog>
+</body>
+</html>

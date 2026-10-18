@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartModal = document.getElementById('cartModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const cartItemList = document.getElementById('cartItemList');
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    const orderSuccessDialog = document.getElementById('orderSuccessDialog');
+    const orderSuccessMessage = document.getElementById('orderSuccessMessage');
+    const closeOrderSuccessBtn = document.getElementById('closeOrderSuccessBtn');
 
     // Xử lý sự kiện bấm nút + trên mỗi món
     addButtons.forEach(btn => {
@@ -62,11 +66,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const itemTotalPrice = item.price * item.quantity;
             const displayName = item.quantity > 1 ? `${item.name} (x${item.quantity})` : item.name;
 
-            li.innerHTML = `
-                <span class="cart-item-name">${displayName}</span>
-                <span class="cart-item-price">${itemTotalPrice.toLocaleString('vi-VN')} vnd</span>
-            `;
+            const name = document.createElement('span');
+            name.className = 'cart-item-name';
+            name.textContent = displayName;
 
+            const price = document.createElement('span');
+            price.className = 'cart-item-price';
+            price.textContent = `${itemTotalPrice.toLocaleString('vi-VN')} vnd`;
+
+            const removeButton = document.createElement('button');
+            removeButton.className = 'remove-cart-item';
+            removeButton.type = 'button';
+            removeButton.textContent = 'Bỏ món';
+            removeButton.setAttribute('aria-label', `Bỏ ${item.name} khỏi danh sách`);
+            removeButton.addEventListener('click', () => {
+                cart = cart.filter(cartItem => cartItem.name !== item.name);
+                updateOrderBar();
+                renderCartItems();
+            });
+
+            li.append(name, price, removeButton);
             cartItemList.appendChild(li);
         });
     }
@@ -85,5 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === cartModal) {
             cartModal.classList.remove('show');
         }
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) return;
+
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        orderSuccessMessage.textContent = `Bạn đã đặt thành công ${totalItems} món với tổng giá trị ${totalPrice.toLocaleString('vi-VN')} vnd.`;
+        cart = [];
+        cartModal.classList.remove('show');
+        updateOrderBar();
+        orderSuccessDialog.showModal();
+    });
+
+    closeOrderSuccessBtn.addEventListener('click', () => {
+        orderSuccessDialog.close();
     });
 });

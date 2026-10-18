@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let pendingBooking = null;
     let authChoiceRequired = false;
 
+    function navigateToAuth(mode) {
+        const authUrl = new URL('dangnhap.html', window.location.href);
+        if (mode === 'register') authUrl.searchParams.set('mode', 'register');
+        authUrl.searchParams.set('next', 'datban.html');
+        window.location.assign(authUrl.href);
+    }
+
     function updateDateMinimum() {
         const now = new Date();
         const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
@@ -155,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     cancelButton.addEventListener('click', function() {
         if (authChoiceRequired) {
-            window.location.assign('/dangnhap.html?mode=register&next=%2Fdatban.html');
+            navigateToAuth('register');
             return;
         }
         bookingDialog.close();
@@ -163,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     confirmButton.addEventListener('click', async function() {
         if (authChoiceRequired) {
-            window.location.assign('/dangnhap.html?next=%2Fdatban.html');
+            navigateToAuth('login');
             return;
         }
 

@@ -1,0 +1,353 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #f4eadb;
+    color: #382b24;
+    font-family: Arial, sans-serif;
+}
+
+.nav-item {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-item ul {
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    list-style: none;
+    background: #4a3026;
+    box-shadow: 0 4px 14px rgba(57, 36, 25, 0.14);
+}
+
+.nav-item li {
+    padding: 0 18px;
+    line-height: 60px;
+}
+
+.nav-item li:hover,
+.nav-item li.active {
+    background: #76503d;
+}
+
+.nav-item .nav-logo {
+    margin-right: auto;
+    padding: 0 12px;
+}
+
+.nav-item .nav-logo a {
+    display: block;
+    height: 60px;
+}
+
+.nav-item .nav-logo img {
+    width: 100px;
+    height: 55px;
+    object-fit: contain;
+    vertical-align: middle;
+    border: 0;
+}
+
+.nav-item a {
+    color: #fff;
+    font: bold 18px Arial, sans-serif;
+    text-decoration: none;
+}
+
+.nav-item li:not(.nav-logo) img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    vertical-align: middle;
+    border: 0;
+    filter: invert(1);
+    mix-blend-mode: screen;
+}
+
+.promo-page {
+    display: grid;
+    gap: 32px;
+    padding: 24px 16px 48px;
+}
+
+.promo-card {
+    display: grid;
+    grid-template-columns: minmax(200px, 276px) minmax(0, 1fr);
+    gap: 8px;
+    min-height: 374px;
+}
+
+.promo-art,
+.promo-details {
+    border: 1px solid #e1d2c1;
+    border-radius: 17px;
+}
+
+.promo-art {
+    position: relative;
+    display: grid;
+    min-height: 100%;
+    overflow: hidden;
+    place-items: center;
+    background: #4a3026;
+}
+
+.promo-art img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.promo-sticker {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    color: #fff;
+    font-size: clamp(4rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.78;
+    letter-spacing: -0.08em;
+    text-shadow: 3px 4px 0 #75412f, -2px -2px 0 #75412f, 2px -2px 0 #75412f, -2px 2px 0 #75412f;
+}
+
+.promo-sticker small {
+    position: absolute;
+    top: -0.05em;
+    right: -0.55em;
+    font-size: 0.48em;
+}
+
+.promo-sticker > span {
+    margin-top: 12px;
+    color: #f4b05b;
+    font-size: 0.18em;
+    letter-spacing: 0;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.combo-sticker {
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #b44732;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-shadow: 2px 3px 0 #783728;
+    transform: rotate(-6deg);
+}
+
+.combo-sticker > span {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 0.35em;
+    text-shadow: none;
+}
+
+.promo-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 32px 30px;
+    border-right: 8px solid #b44732;
+    background: #fffdf9;
+}
+
+.promo-details h1,
+.promo-details h2 {
+    max-width: 850px;
+    color: #74513d;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.title-rule {
+    width: 64px;
+    height: 3px;
+    margin: 20px 0 10px;
+    background: #e8ddcf;
+}
+
+.promo-terms {
+    max-width: 900px;
+}
+
+.promo-terms p {
+    margin: 0 0 14px;
+    font-size: 14px;
+    line-height: 1.42;
+}
+
+.promo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 760px;
+    margin-top: 10px;
+    padding-right: 120px;
+}
+
+.order-promo {
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 1px solid #dfb8a6;
+    border-radius: 4px;
+    background: #f8eee5;
+    color: #a64030;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.order-promo:hover,
+.order-promo:focus-visible {
+    background: #a64030;
+    color: #fff;
+}
+
+.order-promo:focus-visible {
+    outline: 3px solid #d9b18a;
+    outline-offset: 2px;
+}
+
+.promo-badge {
+    position: absolute;
+    right: 28px;
+    bottom: 34px;
+    display: grid;
+    width: 104px;
+    height: 104px;
+    place-items: center;
+    color: #a64030;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    transform: rotate(-48deg);
+}
+
+.promo-badge span {
+    display: block;
+    font-size: 25px;
+    transform: rotate(48deg);
+}
+
+.order-dialog {
+    width: min(92vw, 420px);
+    margin: auto;
+    padding: 32px;
+    border: 0;
+    border-radius: 16px;
+    color: #382b24;
+    text-align: center;
+    box-shadow: 0 18px 50px #0008;
+}
+
+.order-dialog::backdrop {
+    background: #0009;
+}
+
+.success-icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 16px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e5f8ee;
+    color: #16834a;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.order-dialog h2 {
+    margin-bottom: 10px;
+    color: #16834a;
+}
+
+.order-dialog p {
+    line-height: 1.5;
+}
+
+.order-dialog button {
+    margin-top: 22px;
+    padding: 12px 24px;
+    border: 0;
+    border-radius: 8px;
+    background: #74513d;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 720px) {
+    .nav-item li {
+        padding: 0 10px;
+    }
+
+    .nav-item a {
+        font-size: 15px;
+    }
+
+    .promo-page {
+        gap: 22px;
+        padding: 18px 12px 32px;
+    }
+
+    .promo-card {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .promo-art {
+        min-height: 190px;
+    }
+
+    .promo-details {
+        padding: 22px 18px;
+    }
+
+    .promo-actions {
+        padding-right: 0;
+    }
+
+    .order-promo {
+        flex: 1 1 220px;
+    }
+
+    .promo-badge {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .nav-item li {
+        padding: 0 7px;
+    }
+
+    .nav-item a {
+        font-size: 13px;
+    }
+
+    .promo-terms p {
+        font-size: 13px;
+    }
+
+    .order-promo {
+        width: 100%;
+        flex-basis: 100%;
+    }
+}

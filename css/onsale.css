@@ -1,26 +1,27 @@
 :root {
-    --bg-body: #f4f7f6;
-    --bg-sidebar: #2c3e50;
+    --bg-body: #f7f1e8;
+    --bg-sidebar: #4a3026;
     --text-sidebar: #ffffff;
-    --text-sidebar-hover: #34495e;
-    --bg-card: #ffffff;
-    --text-main: #333333;
-    --text-muted: #7f8c8d;
-    --border-color: #e0e0e0;
-    --accent-color: #f39c12;
-    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --text-sidebar-hover: #684936;
+    --bg-card: #fffdf9;
+    --text-main: #382b24;
+    --text-muted: #857466;
+    --border-color: #e6d9c9;
+    --accent-color: #b66a3c;
+    --shadow: 0 4px 12px rgba(83, 55, 37, 0.08);
 }
 
 body.dark-mode {
-    --bg-body: #121212;
-    --bg-sidebar: #1e1e2f;
-    --text-sidebar: #e0e0e0;
-    --text-sidebar-hover: #2a2a40;
-    --bg-card: #1e1e1e;
-    --text-main: #f5f5f5;
-    --text-muted: #aaaaaa;
-    --border-color: #333333;
-    --shadow: 0 4px 6px rgba(0,0,0,0.3);
+    --bg-body: #241b17;
+    --bg-sidebar: #19120f;
+    --text-sidebar: #f5eee6;
+    --text-sidebar-hover: #3b2920;
+    --bg-card: #30241e;
+    --text-main: #f5eee6;
+    --text-muted: #c2ad9d;
+    --border-color: #514035;
+    --accent-color: #d08a53;
+    --shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
 * {
@@ -224,10 +225,10 @@ header h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 8px solid #e67e22;
+    border: 8px solid #c7773f;
     border-radius: 50%;
-    color: #c65e08;
-    background: rgba(230, 126, 34, .08);
+    color: #a9502b;
+    background: rgba(199, 119, 63, .1);
 }
 
 .performance-score.is-good {
@@ -259,7 +260,7 @@ header h1 {
 .progress-fill {
     height: 100%;
     border-radius: inherit;
-    background: #e67e22;
+    background: #c7773f;
     transition: width .3s ease;
 }
 
@@ -280,7 +281,7 @@ header h1 {
 
 .performance-status.is-low,
 .text-low {
-    color: #c65e08;
+    color: #a9502b;
 }
 
 .performance-comparison {
@@ -399,7 +400,7 @@ header h1 {
 
 .calendar-day:hover, .calendar-day.selected {
     border-color: var(--accent-color);
-    background-color: rgba(243, 156, 18, 0.1);
+    background-color: rgba(182, 106, 60, 0.1);
 }
 
 .day-number {
@@ -474,7 +475,7 @@ header h1 {
 }
 
 .stat-box.highlight {
-    background: rgba(243, 156, 18, 0.1);
+    background: rgba(182, 106, 60, 0.1);
     border-color: var(--accent-color);
 }
 
@@ -545,9 +546,9 @@ header h1 {
     color: white;
 }
 
-.type-mang-ve { background-color: #3498db; }
+.type-mang-ve { background-color: #8a6247; }
 .type-tai-quan { background-color: #2ecc71; }
-.type-giao-hang { background-color: #e74c3c; }
+.type-giao-hang { background-color: #b44732; }
 
 /* Toggle Switch */
 .setting-item {

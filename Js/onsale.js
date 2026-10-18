@@ -36,10 +36,10 @@ const themeToggle = document.getElementById('theme-toggle');
 themeToggle.addEventListener('change', function() {
     if(this.checked) {
         document.body.classList.add('dark-mode');
-        Chart.defaults.color = '#e0e0e0'; // Cập nhật màu chữ Chart.js
+        Chart.defaults.color = '#f5eee6'; // Cập nhật màu chữ Chart.js
     } else {
         document.body.classList.remove('dark-mode');
-        Chart.defaults.color = '#666';
+        Chart.defaults.color = '#59483b';
     }
     // Render lại biểu đồ để áp dụng màu mới
     pizzaTypeChart.update();
@@ -49,7 +49,7 @@ themeToggle.addEventListener('change', function() {
 // ==========================================
 // 3. BIỂU ĐỒ (CHART.JS)
 // ==========================================
-Chart.defaults.color = '#666';
+Chart.defaults.color = '#59483b';
 Chart.defaults.font.family = "'Segoe UI', sans-serif";
 
 // Biểu đồ Pizza
@@ -61,8 +61,8 @@ const pizzaTypeChart = new Chart(pizzaTypeCtx, {
         datasets: [{
             label: 'Số lượng bán (Bánh)',
             data: [120, 190, 80, 150, 100],
-            backgroundColor: 'rgba(243, 156, 18, 0.7)',
-            borderColor: 'rgba(243, 156, 18, 1)',
+            backgroundColor: 'rgba(182, 106, 60, 0.7)',
+            borderColor: 'rgba(182, 106, 60, 1)',
             borderWidth: 1,
             borderRadius: 5
         }]
@@ -116,8 +116,8 @@ function renderProfitChart(type) {
             datasets: [{
                 label: chartConfig.label,
                 data: chartConfig.data,
-                backgroundColor: 'rgba(52, 152, 219, 0.7)',
-                borderColor: 'rgba(41, 128, 185, 1)',
+                backgroundColor: 'rgba(138, 98, 71, 0.7)',
+                borderColor: 'rgba(116, 81, 61, 1)',
                 borderWidth: 1,
                 borderRadius: 5
             }]

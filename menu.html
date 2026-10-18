@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Đặt Món - On Pizza</title>
+    <title>Menu Đặt Món - O(Pizza)</title>
     <link rel="stylesheet" href="css/menu.css">
 </head>
 <body>
@@ -15,18 +15,16 @@
             <li><a href="trangchu.html">Trang chủ</a></li>
             <li><a href="datban.html">Đặt bàn</a></li>
             <li class="active"><a href="menu.html" aria-current="page">Thực đơn</a></li>
+            <li><a href="giamgia.html">Giảm Giá</a></li>
             <li><a id="account-link" href="dangnhap.html" aria-label="Đăng nhập"><img src="Img/dangnhap.jpg" alt="Đăng nhập"></a></li>
         </ul>
     </nav>
 
-    <!-- TIÊU ĐỀ TRANG -->
     <header class="header">
-        <h1 class="logo">ON PIZZA MENU</h1>
+        <h1 class="logo">O(PIZZA) MENU</h1>
         <p class="subtitle">Chọn món ăn yêu thích của bạn</p>
     </header>
-    <!-- DANH SÁCH MÓN ĂN -->
     <main class="menu-container">
-        <!-- Danh mục 1: Khai vị & Phô mai -->
         <section class="menu-section">
             <h2 class="section-title">Khai vị & Phô mai</h2>
             <div class="menu-grid">
@@ -296,6 +294,13 @@
             </ul>
         </div>
     </div>
+
+    <dialog class="order-success-dialog" id="orderSuccessDialog" aria-labelledby="orderSuccessTitle">
+        <div class="order-success-icon" aria-hidden="true">✓</div>
+        <h2 id="orderSuccessTitle">Đặt món thành công!</h2>
+        <p id="orderSuccessMessage"></p>
+        <button class="order-success-close" id="closeOrderSuccessBtn" type="button">Tiếp tục</button>
+    </dialog>
 
     <script src="js/menu.js"></script>
     <script src="Js/auth-ui.js"></script>

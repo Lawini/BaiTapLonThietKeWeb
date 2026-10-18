@@ -32,6 +32,7 @@ async function hashPassword(password, salt = crypto.randomBytes(16).toString('he
 async function seedAdmin() {
     const email = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
     const password = process.env.ADMIN_PASSWORD || '';
+    if (!email && !password) return;
     if (!email || password.length < 12) throw new Error('Set ADMIN_EMAIL and ADMIN_PASSWORD (at least 12 characters) before starting the server.');
     const users = getUsers();
     const existing = users.find(user => user.email === email);

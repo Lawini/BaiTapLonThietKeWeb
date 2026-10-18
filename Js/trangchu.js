@@ -8,17 +8,20 @@ const danhSachAnh = document.querySelectorAll(".anh-qcao img");
 let currentIndex = 1;
 const tongAnh = danhSachAnh.length;
 
-//di chuyen anh
+function buocNhay() {
+    const khoangCach = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return track.children[0].getBoundingClientRect().width + khoangCach;
+}
 
-//Nhay len anh 2 can giua
-let buocNhay = danhSachAnh[0].clientWidth + 20;
-    track.style.transform = `translateX(-${currentIndex * buocNhay}px)`;
+function capNhatViTri() {
+    track.style.transform = `translateX(-${currentIndex * buocNhay()}px)`;
+}
 
+capNhatViTri();
 
-function dichChuyenAnh(){
-    track.style.transition =  `transform 0.5s ease-in-out`;
-    track.style.transform = `translateX(-${currentIndex * buocNhay}px)`;    
-
+function dichChuyenAnh() {
+    track.style.transition = "transform 0.5s ease-in-out";
+    capNhatViTri();
 }
 
 btnPhai.addEventListener("click", function(){
@@ -37,16 +40,29 @@ btnTrai.addEventListener("click", function(){
     dichChuyenAnh();
 });
 
+window.addEventListener("resize", function() {
+    track.style.transition = "none";
+    capNhatViTri();
+    void track.offsetHeight;
+    track.style.transition = "";
+});
+
+setInterval(function() {
+    if (currentIndex < tongAnh - 1) {
+        currentIndex++;
+        dichChuyenAnh();
+    }
+}, 3000);
+
 track.addEventListener("transitionend", function(){
     if(danhSachAnh[currentIndex].id === "dau"){
         track.style.transition = "none";
         currentIndex = 1;
-        track.style.transform = `translateX(-${currentIndex * buocNhay}px)`;  
+        capNhatViTri();
     }
     else if(danhSachAnh[currentIndex].id === "cuoi"){
         track.style.transition = "none";
         currentIndex = tongAnh - 2;
-        track.style.transform = `translateX(-${currentIndex * buocNhay}px)`;  
+        capNhatViTri();
     }
 });
-

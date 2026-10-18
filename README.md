@@ -2,9 +2,17 @@
 
 ## Chạy ứng dụng
 
-Ứng dụng cần chạy qua máy chủ Node.js; không mở trực tiếp tệp HTML bằng `file://`.
+Ứng dụng cần chạy qua máy chủ Node.js; không mở trực tiếp tệp HTML bằng `file://`. Khi mở bằng `file://`, trình duyệt không thể gọi API đăng ký, đăng nhập hoặc đặt bàn.
 
-Trong PowerShell, đặt thông tin admin rồi chạy máy chủ:
+Mở PowerShell tại thư mục dự án và chạy:
+
+```powershell
+node server.js
+```
+
+Mở `http://127.0.0.1:3000`. Đăng ký tài khoản khách hàng hoạt động mà không cần cấu hình quản trị viên.
+
+Để bật tài khoản quản trị, cấu hình thông tin riêng trước khi chạy server:
 
 ```powershell
 $env:ADMIN_EMAIL = "admin@opizza.local"
@@ -12,7 +20,7 @@ $env:ADMIN_PASSWORD = "your-unique-password-at-least-12-characters"
 node server.js
 ```
 
-Mở `http://127.0.0.1:3000`. Thay email hoặc mật khẩu bằng thông tin riêng trước khi khởi động. Máy chủ tạo tài khoản admin từ biến môi trường; biểu mẫu công khai chỉ tạo tài khoản khách hàng.
+Nếu lệnh `node` không được nhận diện, hãy cài Node.js rồi mở lại PowerShell. Dự án không cần cài thêm package.
 
 ## Phân quyền
 

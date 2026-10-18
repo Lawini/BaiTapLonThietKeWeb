@@ -18,14 +18,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     async function submit(endpoint, form) {
         message.textContent = '';
+        if (window.location.protocol === 'file:') {
+            message.textContent = 'Không thể tạo tài khoản khi mở file trực tiếp. Hãy chạy máy chủ rồi mở http://127.0.0.1:3000/dangnhap.html.';
+            return;
+        }
+
         try {
-            const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+            const apiUrl = new URL(endpoint, window.location.origin);
+            const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
             const result = await response.json();
             if (!response.ok) throw new Error(result.error || 'Không thể đăng nhập.');
-            if (result.user.role === 'admin') return window.location.assign('/onsale.html');
             const next = params.get('next');
-            window.location.assign(next && next.startsWith('/') && !next.startsWith('//') ? next : '/datban.html');
-        } catch (error) { message.textContent = error.message; }
+            if (result.user.role === 'admin') {
+                window.location.assign(new URL('onsale.html', window.location.href).href);
+                return;
+            }
+            const nextPage = next && !next.startsWith('/') && !next.startsWith('\\') && !next.includes('://')
+                ? next
+                : 'datban.html';
+            window.location.assign(new URL(nextPage, window.location.href).href);
+        } catch (error) {
+            message.textContent = error instanceof TypeError
+                ? 'Không kết nối được máy chủ. Hãy chạy node server.js trong thư mục dự án rồi mở http://127.0.0.1:3000.'
+                : error.message;
+        }
     }
     loginTab.addEventListener('click', () => showTab('login'));
     registerTab.addEventListener('click', () => showTab('register'));
