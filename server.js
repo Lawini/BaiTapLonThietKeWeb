@@ -121,7 +121,26 @@ async function createBooking(request, response) {
     const guests = new Set(['1', '2', '3', '4', 'more']);
     const date = String(body.date || '');
     const time = String(body.time || '');
-    if (!restaurants.has(body.restaurant) || !guests.has(String(body.guests)) || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !/^\d{2}:\d{2}$/.test(time)) return sendJson(response, 400, { error: 'Thông tin đặt bàn không hợp lệ.' });
+    const dateParts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+    const timeParts = /^(\d{2}):(\d{2})$/.exec(time);
+    if (!restaurants.has(body.restaurant) || !guests.has(String(body.guests)) || !dateParts || !timeParts) return sendJson(response, 400, { error: 'Thông tin đặt bàn không hợp lệ.' });
+    const [, year, month, day] = dateParts;
+    const [, hour, minute] = timeParts;
+    const bookingDate = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute));
+    if (
+        Number(year) < 1 ||
+        Number(month) < 1 ||
+        Number(month) > 12 ||
+        Number(day) < 1 ||
+        Number(hour) > 23 ||
+        Number(minute) > 59 ||
+        bookingDate.getFullYear() !== Number(year) ||
+        bookingDate.getMonth() !== Number(month) - 1 ||
+        bookingDate.getDate() !== Number(day) ||
+        bookingDate.getHours() !== Number(hour) ||
+        bookingDate.getMinutes() !== Number(minute) ||
+        bookingDate <= new Date()
+    ) return sendJson(response, 400, { error: 'Ngày và giờ đặt bàn phải hợp lệ và ở trong tương lai.' });
     const booking = { id: crypto.randomUUID(), userId: session.userId, customerName: session.name, customerEmail: session.email, restaurant: body.restaurant, city: String(body.city || ''), guests: String(body.guests), date, time, createdAt: new Date().toISOString() };
     const bookings = getBookings();
     bookings.push(booking);
