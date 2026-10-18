@@ -13,12 +13,64 @@ body {
     flex-direction: column;
 }
 
-.thanh-dieu-huong {
-    width: 100%;
+.nav-item{
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.nav-item ul{
+    list-style-type: none;  
+    text-align: right;
+    background-color: #004666;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.nav-item li{
+    display: inline-block;
+    padding: 0 20px;
+    line-height: 60px;
+}
+
+ul{
+    height: 65px;
+}
+
+.nav-item .nav-logo {
+    margin-right: auto;
+    padding: 0 12px;
+}
+.nav-item .nav-logo a {
+    display: block;
     height: 60px;
-    background-color: #004b6e;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    position: fixed;
+}
+.nav-item .nav-logo img {
+    width: 100px;
+    height: 55px;
+    object-fit: fill;
+    vertical-align: middle;
+    background-color: #004666;
+    border-radius: 26px;
+    margin-left: 15px;
+}
+.nav-item li:hover{
+    background-color: rgb(27, 135, 165);
+}
+.nav-item a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.nav-item li:not(.nav-logo) img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    filter: invert(1);
+    mix-blend-mode: screen;
 }
 
 .khung-chinh {
@@ -44,17 +96,18 @@ body {
 }
 
 .khung-linh-vat {
-    width: 250px;
-    height: 250px;
-    margin-bottom: 20px;
+    width: 450px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #006494;
 }
 
 .khung-linh-vat img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 125%;
+    height: 125%;
+    flex-shrink: 0;
     object-fit: contain;
 }
 
@@ -196,11 +249,6 @@ button[type="submit"]:hover {
     color: #006494;
 }
 
-small {
-    font-size: 0.8rem;
-    opacity: 0.85;
-}
-
 .hop-thoai-dat-ban {
     width: min(90%, 480px);
     margin: auto;
@@ -278,8 +326,8 @@ small {
     }
     
     .khung-linh-vat {
-        width: 180px;
-        height: 180px;
+        width: 210px;
+        height: 210px;
     }
 }
 
