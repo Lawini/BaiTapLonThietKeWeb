@@ -61,6 +61,7 @@ ul{
     vertical-align: middle;
     filter: invert(1);
     mix-blend-mode: screen;
+
 }
 
 /* Thanh qcao */
@@ -74,7 +75,8 @@ ul{
     display: flex;
     gap: 20px;
     /* padding: 0 10%; */
-    transition: transform 0.5s ease-in-out;
+    /* transition: transform 0.5s ease-in-out; */
+    animation: tuDongTruot 9s infinite;
 }
 .anh-qcao img{ 
     width: 80%;
@@ -104,6 +106,21 @@ ul{
 }
 #sang-trai{
     left: 150px;
+}
+
+@keyframes tuDongTruot {
+    0%, 25% {
+        transform: translateX(calc(-80% - 20px)); 
+    }
+    33%, 58% {
+        transform: translateX(calc(-160% - 40px)); 
+    }
+    66%, 91% {
+        transform: translateX(calc(-240% - 60px)); 
+    }
+    100% {
+        transform: translateX(calc(-320% - 80px)); 
+    }
 }
 
 /* tieu de gach */

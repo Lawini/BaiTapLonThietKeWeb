@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O(Pizza) Dashboard</title>
+    <link rel="stylesheet" href="css/onsale.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>O(Pizza)</h2>
+        <ul id="nav-menu">
+            <li><a href="#" data-target="overview" class="active"><i class="fas fa-chart-pie"></i> Tổng quan</a></li>
+            <li><a href="#" data-target="orders"><i class="fas fa-calendar-alt"></i> Đơn hàng</a></li>
+            <li><a href="#" data-target="settings"><i class="fas fa-cog"></i> Cài đặt</a></li>
+            <li><button type="button" id="admin-logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <!-- VIEW: TỔNG QUAN -->
+        <div id="overview" class="view-section active">
+            <header>
+                <h1>Báo Cáo Doanh Thu</h1>
+            </header>
+            <div class="cards">
+                <div class="card">
+                    <h3>Doanh thu ngày chọn</h3>
+                    <p id="overview-revenue">—</p>
+                </div>
+                <div class="card">
+                    <h3>Số đơn ngày chọn</h3>
+                    <p id="overview-orders">—</p>
+                </div>
+                <div class="card">
+                    <h3>Giá trị trung bình/đơn</h3>
+                    <p id="overview-average">—</p>
+                </div>
+            </div>
+            <section class="performance-panel card" aria-labelledby="performance-title">
+                <div class="performance-heading">
+                    <div>
+                        <p class="eyebrow">ĐÁNH GIÁ KẾT QUẢ</p>
+                        <h2 id="performance-title">Hiệu suất ngày</h2>
+                        <p class="sample-note">Số liệu bán hàng đang là dữ liệu minh họa.</p>
+                    </div>
+                    <label class="date-picker-label" for="overview-date">Chọn ngày
+                        <input type="date" id="overview-date">
+                    </label>
+                </div>
+                <div class="performance-content">
+                    <div class="performance-score" id="performance-score">
+                        <strong id="performance-rate">—%</strong>
+                        <span>mục tiêu ngày</span>
+                    </div>
+                    <div class="performance-details">
+                        <div class="progress-track" role="progressbar" aria-label="Tỷ lệ đạt mục tiêu" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="performance-progress-track">
+                            <div class="progress-fill" id="performance-progress"></div>
+                        </div>
+                        <p class="performance-status" id="performance-status">Chọn ngày để xem kết quả</p>
+                        <p class="performance-comparison" id="performance-comparison"></p>
+                        <p class="performance-target" id="performance-target"></p>
+                    </div>
+                </div>
+            </section>
+            <div class="charts">
+                <div class="chart-container">
+                    <h2>Doanh thu theo loại Pizza</h2>
+                    <canvas id="pizzaTypeChart"></canvas>
+                </div>
+                <div class="chart-container" style="flex: 2;">
+                    <div class="chart-header">
+                        <h2>Lợi nhuận</h2>
+                        <div class="chart-filters">
+                            <button class="filter-btn active" data-type="day">Ngày</button>
+                            <button class="filter-btn" data-type="week">Tuần</button>
+                            <button class="filter-btn" data-type="month">Tháng</button>
+                            <button class="filter-btn" data-type="year">Năm</button>
+                        </div>
+                    </div>
+                    <canvas id="profitChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: ĐƠN HÀNG (LỊCH) -->
+        <div id="orders" class="view-section">
+            <header>
+                <h1>Lịch Đơn Hàng</h1>
+            </header>
+            <div class="orders-layout">
+                <div class="calendar-container card">
+                    <div class="calendar-header">
+                        <button id="prev-month">&lt;</button>
+                        <h2 id="month-year">—</h2>
+                        <button id="next-month">&gt;</button>
+                    </div>
+                    <div class="weekdays">
+                        <div>CN</div><div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Lịch sẽ được render bằng JS -->
+                    </div>
+                </div>
+                
+                <div class="order-details card" id="order-details-panel">
+                    <div class="empty-state">
+                        <i class="fas fa-hand-pointer fa-3x"></i>
+                        <p>Chọn một ngày trên lịch để xem chi tiết đơn hàng.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: CÀI ĐẶT -->
+        <div id="settings" class="view-section">
+            <header>
+                <h1>Cài Đặt Hệ Thống</h1>
+            </header>
+            <div class="card settings-card">
+                <h2>Cài Đặt Hệ Thống</h2>
+                <div class="setting-item">
+                    <span>Chế độ Tối (Dark Mode)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="setting-item target-setting">
+                    <label for="daily-target">Mục tiêu doanh thu/ngày (VNĐ)</label>
+                    <input type="number" id="daily-target" min="1" step="100000" value="5000000">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="Js/onsale.js"></script>
+</body>
+</html>
