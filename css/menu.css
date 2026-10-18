@@ -1,6 +1,66 @@
 /* ===== CƠ BẢN ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+.nav-item {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-item ul {
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    list-style: none;
+    background: #004666;
+}
+
+.nav-item li {
+    padding: 0 18px;
+    line-height: 60px;
+}
+
+.nav-item li:hover,
+.nav-item li.active {
+    background: #1b87a5;
+}
+
+.nav-item .nav-logo {
+    margin-right: auto;
+    padding: 0 12px;
+}
+
+.nav-item .nav-logo a {
+    display: block;
+    height: 60px;
+}
+
+.nav-item .nav-logo img {
+    width: 100px;
+    height: 55px;
+    object-fit: contain;
+    vertical-align: middle;
+    border: 0;
+}
+
+.nav-item a {
+    color: #fff;
+    font: bold 18px Arial, sans-serif;
+    text-decoration: none;
+}
+
+.nav-item li:not(.nav-logo) img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    vertical-align: middle;
+    border: 0;
+    filter: invert(1);
+    mix-blend-mode: screen;
+}
+
 body {
     font-family: 'Plus Jakarta Sans', Arial, sans-serif;
     background: #F8F7F4;

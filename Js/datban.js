@@ -11,14 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeButton = document.getElementById('close-booking');
     let pendingBooking = null;
 
-    fetch('/api/me', { cache: 'no-store' }).then(response => response.json()).then(({ user }) => {
-        if (!user || user.role !== 'customer') {
-            window.location.replace('/dangnhap.html?mode=register&next=%2Fdatban.html');
-        }
-    }).catch(() => {
-        window.location.replace('/dangnhap.html?mode=register&next=%2Fdatban.html');
-    });
-
     citySelect.addEventListener('change', function() {
         const selectedCity = this.value;
         restaurantSelect.innerHTML = '';
@@ -33,8 +25,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     citySelect.dispatchEvent(new Event('change'));
 
-    bookingForm.addEventListener('submit', function(event) {
+    bookingForm.addEventListener('submit', async function(event) {
         event.preventDefault();
+
+        try {
+            const response = await fetch('/api/me', { cache: 'no-store' });
+            if (!response.ok) throw new Error('Không thể kiểm tra trạng thái đăng nhập.');
+            const { user } = await response.json();
+            if (!user || user.role !== 'customer') {
+                window.location.assign('/dangnhap.html?mode=register&next=%2Fdatban.html');
+                return;
+            }
+        } catch (error) {
+            bookingTitle.textContent = 'Không thể tiếp tục';
+            bookingMessage.textContent = error.message;
+            confirmButton.hidden = true;
+            cancelButton.hidden = true;
+            closeButton.hidden = false;
+            bookingDialog.showModal();
+            return;
+        }
 
         const formData = new FormData(bookingForm);
         const selectedRestaurant = restaurantSelect.selectedOptions[0];
