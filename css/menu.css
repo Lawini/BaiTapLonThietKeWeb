@@ -16,7 +16,7 @@
 }
 
 .nav-item ul {
-    min-height: 65px;
+    min-height: 56px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -27,8 +27,8 @@
 }
 
 .nav-item li {
-    padding: 0 18px;
-    line-height: 60px;
+    padding: 0 14px;
+    line-height: 56px;
 }
 
 .nav-item li:hover,
@@ -43,12 +43,12 @@
 
 .nav-item .nav-logo a {
     display: block;
-    height: 60px;
+    height: 56px;
 }
 
 .nav-item .nav-logo img {
-    width: 100px;
-    height: 55px;
+    width: 90px;
+    height: 48px;
     object-fit: contain;
     vertical-align: middle;
     border: 0;
@@ -56,13 +56,13 @@
 
 .nav-item a {
     color: #fff;
-    font: bold 18px Arial, sans-serif;
+    font: bold 16px Arial, sans-serif;
     text-decoration: none;
 }
 
 .nav-item li:not(.nav-logo) img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
     vertical-align: middle;
     border: 0;
@@ -89,7 +89,7 @@ button { font-family: inherit; border: none; cursor: pointer; }
 /* ===== TIÊU ĐỀ ===== */
 .header {
     text-align: center;
-    padding: 40px 20px 24px;
+    padding: 24px 20px 40px;
     background: var(--brand-deep);
     color: #F8F7F4;
 }
