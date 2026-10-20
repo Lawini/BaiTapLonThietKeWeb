@@ -87,19 +87,30 @@ body {
 
 .sidebar ul li button {
     width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px 15px;
     border: 0;
     border-radius: 8px;
-    background: transparent;
+    background: #b44732;
     color: var(--text-sidebar);
     font-size: 16px;
     text-align: left;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .sidebar ul li button:hover {
-    background-color: var(--text-sidebar-hover);
-    color: var(--accent-color);
+    background-color: #923925;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.sidebar ul li button:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
 }
 
 .main-content {

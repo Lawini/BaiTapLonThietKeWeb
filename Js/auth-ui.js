@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         button.type = 'button';
         button.className = 'logout-button';
         button.textContent = 'Đăng xuất';
-        button.addEventListener('click', async () => { await fetch('/api/logout', { method: 'POST' }); window.location.assign('/trangchu.html'); });
+        button.addEventListener('click', async () => { await fetch('/api/logout', { method: 'POST' }); window.location.assign('/index.html'); });
         logoutItem.appendChild(button);
         navList.appendChild(logoutItem);
     } catch { /* Public pages remain available when the account status endpoint is unavailable. */ }

@@ -6,7 +6,7 @@ const viewSections = document.querySelectorAll('.view-section');
 
 document.getElementById('admin-logout').addEventListener('click', async () => {
     await fetch('/api/logout', { method: 'POST' });
-    window.location.assign('/trangchu.html');
+    window.location.assign('/index.html');
 });
 
 // Sử dụng forEach để lặp qua các mảng/NodeList một cách gọn gàng

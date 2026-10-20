@@ -180,12 +180,12 @@ async function handle(request, response) {
             return response.end();
         }
         if (session.role !== 'admin') {
-            response.writeHead(302, { Location: '/trangchu.html?error=forbidden', 'Cache-Control': 'no-store' });
+            response.writeHead(302, { Location: '/index.html?error=forbidden', 'Cache-Control': 'no-store' });
             return response.end();
         }
     }
     if (request.method !== 'GET' && request.method !== 'HEAD') return sendJson(response, 405, { error: 'Phương thức không được hỗ trợ.' });
-    const relativePath = canonicalPath === '/' ? 'trangchu.html' : canonicalPath.replace(/^\/+/, '');
+    const relativePath = canonicalPath === '/' ? 'index.html' : canonicalPath.replace(/^\/+/, '');
     const blockedSegments = new Set(['data', 'node_modules']);
     if (normalizedPath === '/server.js' || canonicalPath.split('/').some(segment => segment.startsWith('.') || blockedSegments.has(segment.toLowerCase()))) {
         return sendJson(response, 404, { error: 'Không tìm thấy trang.' });

@@ -71,6 +71,44 @@
     color: #ffc107;
 }
 
+.nav-item a.account-name {
+    display: inline-flex;
+    align-items: center;
+    max-width: 180px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #f4c46a;
+    color: #382b24;
+    font-size: 15px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.nav-item .logout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid #d77a61;
+    border-radius: 8px;
+    background: #b44732;
+    color: #fff;
+    font: 700 14px Arial, sans-serif;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-item .logout-button:hover {
+    background: #923925;
+    transform: translateY(-1px);
+}
+
+.nav-item .logout-button:focus-visible {
+    outline: 3px solid #f4c46a;
+    outline-offset: 2px;
+}
+
 body {
     font-family: 'Plus Jakarta Sans', Arial, sans-serif;
     background: var(--page-bg);
