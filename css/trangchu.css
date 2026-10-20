@@ -47,14 +47,15 @@
     font: bold 18px Arial, sans-serif;
     color: #fff;
 }
-.nav-item li:not(.nav-logo) img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+#account-link i {
+    font-size: 26px; 
+    color: white;
     vertical-align: middle;
-    border: 0;
-    filter: invert(1);
-    mix-blend-mode: screen;
+    transition: 0.3s;
+}
+
+#account-link i:hover {
+    color: #ffc107; 
 }
 
 body {

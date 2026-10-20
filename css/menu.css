@@ -16,7 +16,7 @@
 }
 
 .nav-item ul {
-    min-height: 56px;
+    min-height: 65px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -27,8 +27,8 @@
 }
 
 .nav-item li {
-    padding: 0 14px;
-    line-height: 56px;
+    padding: 0 18px;
+    line-height: 60px;
 }
 
 .nav-item li:hover,
@@ -43,12 +43,12 @@
 
 .nav-item .nav-logo a {
     display: block;
-    height: 56px;
+    height: 60px;
 }
 
 .nav-item .nav-logo img {
-    width: 90px;
-    height: 48px;
+    width: 100px;
+    height: 55px;
     object-fit: contain;
     vertical-align: middle;
     border: 0;
@@ -56,18 +56,19 @@
 
 .nav-item a {
     color: #fff;
-    font: bold 16px Arial, sans-serif;
+    font: bold 18px Arial, sans-serif;
     text-decoration: none;
 }
 
-.nav-item li:not(.nav-logo) img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
+#account-link i {
+    font-size: 26px;
+    color: #fff;
     vertical-align: middle;
-    border: 0;
-    filter: invert(1);
-    mix-blend-mode: screen;
+    transition: 0.3s;
+}
+
+#account-link i:hover {
+    color: #ffc107;
 }
 
 body {
